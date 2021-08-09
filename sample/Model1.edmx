@@ -1,0 +1,952 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="INVOICE_CSHARPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADDRESS">
+          <Key>
+            <PropertyRef Name="ADDR_ID" />
+          </Key>
+          <Property Name="ADDR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ADDR_AR" Type="int" />
+          <Property Name="ADDR_NAME" Type="varchar" MaxLength="150" />
+          <Property Name="ADDR_BRANCH" Type="varchar" MaxLength="100" />
+          <Property Name="ADDR_TAXID" Type="varchar" MaxLength="50" />
+          <Property Name="ADDR_ADDB1" Type="varchar" MaxLength="100" />
+          <Property Name="ADDR_ADDB2" Type="varchar" MaxLength="100" />
+          <Property Name="ADDR_PROVINCE" Type="varchar" MaxLength="100" />
+          <Property Name="ADDR_POST" Type="varchar" MaxLength="50" />
+          <Property Name="ADDR_TEL" Type="varchar" MaxLength="100" />
+          <Property Name="ADDR_FAX" Type="varchar" MaxLength="100" />
+          <Property Name="ADDR_MAIL" Type="varchar" MaxLength="100" />
+          <Property Name="ADDR_WEB" Type="varchar" MaxLength="100" />
+          <Property Name="ADDR_REMARK" Type="varchar(max)" />
+          <Property Name="ADDR_STATUS" Type="bit" />
+          <Property Name="ADDR_CREATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CODE_RUNNING">
+          <Key>
+            <PropertyRef Name="CR_ID" />
+          </Key>
+          <Property Name="CR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CR_CODE" Type="varchar" MaxLength="30" />
+          <Property Name="CR_NAME" Type="varchar" MaxLength="150" />
+          <Property Name="CR_TYPE" Type="tinyint" />
+          <Property Name="CR_PREFIX" Type="varchar" MaxLength="5" />
+          <Property Name="CR_SEPARATE" Type="varchar" MaxLength="5" />
+          <Property Name="CR_RUNNING" Type="tinyint" />
+          <Property Name="CR_STATUS" Type="bit" />
+        </EntityType>
+        <EntityType Name="COMPANY">
+          <Key>
+            <PropertyRef Name="CMPN_ID" />
+          </Key>
+          <Property Name="CMPN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CMPN_NAME" Type="varchar" MaxLength="150" />
+          <Property Name="CMPN_ADDB1" Type="varchar" MaxLength="100" />
+          <Property Name="CMPN_ADDB2" Type="varchar" MaxLength="100" />
+          <Property Name="CMPN_E_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="CMPN_E_ADDB1" Type="varchar" MaxLength="100" />
+          <Property Name="CMPN_E_ADDB2" Type="varchar" MaxLength="100" />
+          <Property Name="CMPN_POST" Type="varchar" MaxLength="50" />
+          <Property Name="CMPN_TEL" Type="varchar" MaxLength="100" />
+          <Property Name="CMPN_FAX" Type="varchar" MaxLength="100" />
+          <Property Name="CMPN_TAXID" Type="varchar" MaxLength="50" />
+          <Property Name="CMPN_REGNO" Type="varchar" MaxLength="50" />
+          <Property Name="CMPN_WEB" Type="varchar" MaxLength="100" />
+          <Property Name="CMPN_MAIL" Type="varchar" MaxLength="100" />
+          <Property Name="CMPN_VAT_R" Type="money" />
+          <Property Name="CMPN_IMAGE" Type="image" />
+          <Property Name="CMPN_IMAGE_PATH" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUS_ID" />
+          </Key>
+          <Property Name="CUS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUS_CODE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CUS_NAME" Type="varchar" MaxLength="150" />
+          <Property Name="CUS_BRANCH" Type="varchar" MaxLength="100" />
+          <Property Name="CUS_TAXID" Type="varchar" MaxLength="50" />
+          <Property Name="CUS_ADDB1" Type="varchar" MaxLength="100" />
+          <Property Name="CUS_ADDB2" Type="varchar" MaxLength="100" />
+          <Property Name="CUS_PROVINCE" Type="varchar" MaxLength="100" />
+          <Property Name="CUS_POST" Type="varchar" MaxLength="50" />
+          <Property Name="CUS_TEL" Type="varchar" MaxLength="100" />
+          <Property Name="CUS_FAX" Type="varchar" MaxLength="100" />
+          <Property Name="CUS_MAIL" Type="varchar" MaxLength="100" />
+          <Property Name="CUS_WEB" Type="varchar" MaxLength="100" />
+          <Property Name="CUS_CAT" Type="int" />
+          <Property Name="CUS_SLMN" Type="int" />
+          <Property Name="CUS_CONTACT" Type="varchar" MaxLength="100" />
+          <Property Name="CUS_CREDIT_TERM" Type="smallint" />
+          <Property Name="CUS_CREDIT_LIMIT" Type="money" />
+          <Property Name="CUS_DISC_PERCEN" Type="money" />
+          <Property Name="CUS_TAX_TY" Type="tinyint" />
+          <Property Name="CUS_TAX_VATIO" Type="tinyint" />
+          <Property Name="CUS_REMARK" Type="varchar(max)" />
+          <Property Name="CUS_STATUS" Type="bit" />
+          <Property Name="CUS_CREATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CUSTOMER_TYPE">
+          <Key>
+            <PropertyRef Name="CUSTY_ID" />
+          </Key>
+          <Property Name="CUSTY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUSTY_CODE" Type="varchar" MaxLength="30" />
+          <Property Name="CUSTY_NAME" Type="varchar" MaxLength="150" />
+          <Property Name="CUSTY_REMARK" Type="varchar(max)" />
+          <Property Name="CUSTY_STATUS" Type="bit" />
+          <Property Name="CUSTY_CREATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DOCTYPE">
+          <Key>
+            <PropertyRef Name="DT_ID" />
+          </Key>
+          <Property Name="DT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DT_CODE" Type="varchar" MaxLength="30" />
+          <Property Name="DT_NAME" Type="varchar" MaxLength="150" />
+          <Property Name="DT_TYPE" Type="tinyint" />
+          <Property Name="DT_PREFIX" Type="varchar" MaxLength="50" />
+          <Property Name="DT_SEPARATE" Type="varchar" MaxLength="50" />
+          <Property Name="DT_DATE_SELECT" Type="bit" />
+          <Property Name="DT_DATE_TYPE" Type="tinyint" />
+          <Property Name="DT_DATE_DIGIT" Type="int" />
+          <Property Name="DT_DATE_SEPARATE" Type="varchar" MaxLength="50" />
+          <Property Name="DT_RUNNING" Type="tinyint" />
+          <Property Name="DT_STATUS" Type="bit" />
+          <Property Name="DT_PRINT_TY" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="PRODUCTS">
+          <Key>
+            <PropertyRef Name="PRO_ID" />
+          </Key>
+          <Property Name="PRO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PRO_CODE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PRO_NAME" Type="varchar" MaxLength="150" />
+          <Property Name="PRO_ALIAS" Type="varchar" MaxLength="150" />
+          <Property Name="PRO_E_NAME" Type="varchar" MaxLength="150" />
+          <Property Name="PRO_UNIT" Type="varchar" MaxLength="50" />
+          <Property Name="PRO_BUY" Type="money" />
+          <Property Name="PRO_PRICE" Type="money" />
+          <Property Name="PRO_CAT" Type="int" />
+          <Property Name="PRO_VAT_TY" Type="tinyint" />
+          <Property Name="PRO_VAT_R" Type="money" />
+          <Property Name="PRO_MIN" Type="money" />
+          <Property Name="PRO_MAX" Type="money" />
+          <Property Name="PRO_IMAGE" Type="varchar" MaxLength="255" />
+          <Property Name="PRO_REMARK" Type="varchar(max)" />
+          <Property Name="PRO_STATUS" Type="bit" />
+          <Property Name="PRO_CREATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PRODUCTS_TYPE">
+          <Key>
+            <PropertyRef Name="PROTY_ID" />
+          </Key>
+          <Property Name="PROTY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PROTY_CODE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PROTY_NAME" Type="varchar" MaxLength="150" />
+          <Property Name="PROTY_REMARK" Type="varchar(max)" />
+          <Property Name="PROTY_CREATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PROVINCE">
+          <Key>
+            <PropertyRef Name="PROVINCE_ID" />
+          </Key>
+          <Property Name="PROVINCE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PROVINCE_NAME" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="SALESMAN">
+          <Key>
+            <PropertyRef Name="SLMN_ID" />
+          </Key>
+          <Property Name="SLMN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SLMN_CODE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="SLMN_NAME" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="SLMN_POSITION" Type="varchar" MaxLength="100" />
+          <Property Name="SLMN_TEL" Type="varchar" MaxLength="100" />
+          <Property Name="SLMN_MAIL" Type="varchar" MaxLength="100" />
+          <Property Name="SLMN_SL_TARGET" Type="money" />
+          <Property Name="SLMN_SL_TARGET_QUARTER" Type="money" />
+          <Property Name="SLMN_SL_TARGET_YEAR" Type="money" />
+          <Property Name="SLMN_REMARK" Type="varchar(max)" />
+          <Property Name="SLMN_STATUS" Type="bit" />
+          <Property Name="SLMN_CREATE" Type="datetime" />
+          <Property Name="SLMN_IMAGE" Type="image" />
+          <Property Name="SLMN_CAT" Type="int" />
+          <Property Name="SLMN_COMMISSION" Type="money" />
+        </EntityType>
+        <EntityType Name="SUPPLIER">
+          <Key>
+            <PropertyRef Name="SUP_ID" />
+          </Key>
+          <Property Name="SUP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SUP_CODE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="SUP_NAME" Type="varchar" MaxLength="150" />
+          <Property Name="SUP_BRANCH" Type="varchar" MaxLength="100" />
+          <Property Name="SUP_TAXID" Type="varchar" MaxLength="50" />
+          <Property Name="SUP_ADDB1" Type="varchar" MaxLength="100" />
+          <Property Name="SUP_ADDB2" Type="varchar" MaxLength="100" />
+          <Property Name="SUP_PROVINCE" Type="varchar" MaxLength="100" />
+          <Property Name="SUP_POST" Type="varchar" MaxLength="50" />
+          <Property Name="SUP_TEL" Type="varchar" MaxLength="100" />
+          <Property Name="SUP_FAX" Type="varchar" MaxLength="100" />
+          <Property Name="SUP_MAIL" Type="varchar" MaxLength="100" />
+          <Property Name="SUP_WEB" Type="varchar" MaxLength="100" />
+          <Property Name="SUP_CAT" Type="int" />
+          <Property Name="SUP_CONTACT" Type="varchar" MaxLength="100" />
+          <Property Name="SUP_CREDIT_TERM" Type="smallint" />
+          <Property Name="SUP_CREDIT_LIMIT" Type="money" />
+          <Property Name="SUP_DISC_PERCEN" Type="money" />
+          <Property Name="SUP_TAX_TY" Type="tinyint" />
+          <Property Name="SUP_TAX_VATIO" Type="tinyint" />
+          <Property Name="SUP_REMARK" Type="varchar(max)" />
+          <Property Name="SUP_STATUS" Type="bit" />
+          <Property Name="SUP_CREATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SUPPLIER_TYPE">
+          <Key>
+            <PropertyRef Name="SUPTY_ID" />
+          </Key>
+          <Property Name="SUPTY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SUPTY_CODE" Type="varchar" MaxLength="30" />
+          <Property Name="SUPTY_NAME" Type="varchar" MaxLength="150" />
+          <Property Name="SUPTY_REMARK" Type="varchar(max)" />
+          <Property Name="SUPTY_STATUS" Type="bit" />
+          <Property Name="SUPTY_CREATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TRANDETAIL">
+          <Key>
+            <PropertyRef Name="TRD_ID" />
+          </Key>
+          <Property Name="TRD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TRD_TRH" Type="int" />
+          <Property Name="TRD_SEQ" Type="smallint" />
+          <Property Name="TRD_SKU" Type="int" />
+          <Property Name="TRD_SKU_CODE" Type="varchar" MaxLength="30" />
+          <Property Name="TRD_SKU_NAME" Type="varchar" MaxLength="150" />
+          <Property Name="TRD_UNIT" Type="varchar" MaxLength="50" />
+          <Property Name="TRD_VAT_TY" Type="tinyint" />
+          <Property Name="TRD_VAT_R" Type="money" />
+          <Property Name="TRD_QTY" Type="money" />
+          <Property Name="TRD_UPC" Type="money" />
+          <Property Name="TRD_DISC" Type="money" />
+          <Property Name="TRD_DISC_AMT" Type="money" />
+          <Property Name="TRD_G_KEYIN" Type="money" />
+          <Property Name="TRD_TDISC_AMT" Type="money" />
+          <Property Name="TRD_G_SELL" Type="money" />
+          <Property Name="TRD_G_VAT" Type="money" />
+          <Property Name="TRD_G_AMT" Type="money" />
+          <Property Name="TRD_REMARK" Type="varchar" MaxLength="255" />
+          <Property Name="TRD_CREATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TRANMAIN">
+          <Key>
+            <PropertyRef Name="TRH_ID" />
+          </Key>
+          <Property Name="TRH_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TRH_DT" Type="int" />
+          <Property Name="TRH_NO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TRH_DATE" Type="datetime" />
+          <Property Name="TRH_VAT_NO" Type="varchar" MaxLength="50" />
+          <Property Name="TRH_VAT_DATE" Type="datetime" />
+          <Property Name="TRH_SHIP_DATE" Type="datetime" />
+          <Property Name="TRH_BILL_DATE" Type="datetime" />
+          <Property Name="TRH_CANCEL_DATE" Type="datetime" />
+          <Property Name="TRH_CUS" Type="int" />
+          <Property Name="TRH_SLMN" Type="int" />
+          <Property Name="TRH_TERM" Type="smallint" />
+          <Property Name="TRH_DUE" Type="datetime" />
+          <Property Name="TRH_REF_PO" Type="varchar" MaxLength="100" />
+          <Property Name="TRH_REF_SO" Type="varchar" MaxLength="100" />
+          <Property Name="TRH_REF_PERSON" Type="varchar" MaxLength="100" />
+          <Property Name="TRH_VATIO" Type="tinyint" />
+          <Property Name="TRH_VAT" Type="int" />
+          <Property Name="TRH_VAT_TY" Type="tinyint" />
+          <Property Name="TRH_VAT_R" Type="money" />
+          <Property Name="TRH_N_QTY" Type="money" />
+          <Property Name="TRH_N_ITEMS" Type="int" />
+          <Property Name="TRH_G_KEYIN" Type="money" />
+          <Property Name="TRH_DISC" Type="money" />
+          <Property Name="TRH_DISC_AMT" Type="money" />
+          <Property Name="TRH_G_SELL" Type="money" />
+          <Property Name="TRH_G_SV" Type="money" />
+          <Property Name="TRH_G_SNV" Type="money" />
+          <Property Name="TRH_G_VAT" Type="money" />
+          <Property Name="TRH_G_NET" Type="money" />
+          <Property Name="TRH_REMARK" Type="varchar(max)" />
+          <Property Name="TRH_DOC_STATUS" Type="tinyint" />
+          <Property Name="TRH_STATUS" Type="bit" />
+          <Property Name="TRH_CREATE_BY" Type="varchar" MaxLength="100" />
+          <Property Name="TRH_CREATE" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="INVOICE_CSHARPModelStoreContainer">
+          <EntitySet Name="ADDRESS" EntityType="Self.ADDRESS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CODE_RUNNING" EntityType="Self.CODE_RUNNING" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPANY" EntityType="Self.COMPANY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUSTOMER_TYPE" EntityType="Self.CUSTOMER_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOCTYPE" EntityType="Self.DOCTYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTS_TYPE" EntityType="Self.PRODUCTS_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROVINCE" EntityType="Self.PROVINCE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SALESMAN" EntityType="Self.SALESMAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUPPLIER" EntityType="Self.SUPPLIER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUPPLIER_TYPE" EntityType="Self.SUPPLIER_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRANDETAIL" EntityType="Self.TRANDETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRANMAIN" EntityType="Self.TRANMAIN" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="INVOICE_CSHARPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ADDRESS">
+          <Key>
+            <PropertyRef Name="ADDR_ID" />
+          </Key>
+          <Property Name="ADDR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ADDR_AR" Type="Int32" />
+          <Property Name="ADDR_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_BRANCH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_TAXID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_ADDB1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_ADDB2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_PROVINCE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_POST" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_TEL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_FAX" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_MAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_WEB" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_REMARK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_STATUS" Type="Boolean" />
+          <Property Name="ADDR_CREATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CODE_RUNNING">
+          <Key>
+            <PropertyRef Name="CR_ID" />
+          </Key>
+          <Property Name="CR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CR_CODE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CR_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CR_TYPE" Type="Byte" />
+          <Property Name="CR_PREFIX" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="CR_SEPARATE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="CR_RUNNING" Type="Byte" />
+          <Property Name="CR_STATUS" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="COMPANY">
+          <Key>
+            <PropertyRef Name="CMPN_ID" />
+          </Key>
+          <Property Name="CMPN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CMPN_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CMPN_ADDB1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CMPN_ADDB2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CMPN_E_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CMPN_E_ADDB1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CMPN_E_ADDB2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CMPN_POST" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CMPN_TEL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CMPN_FAX" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CMPN_TAXID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CMPN_REGNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CMPN_WEB" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CMPN_MAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CMPN_VAT_R" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CMPN_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CMPN_IMAGE_PATH" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUS_ID" />
+          </Key>
+          <Property Name="CUS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUS_CODE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUS_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CUS_BRANCH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CUS_TAXID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CUS_ADDB1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CUS_ADDB2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CUS_PROVINCE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CUS_POST" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CUS_TEL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CUS_FAX" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CUS_MAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CUS_WEB" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CUS_CAT" Type="Int32" />
+          <Property Name="CUS_SLMN" Type="Int32" />
+          <Property Name="CUS_CONTACT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CUS_CREDIT_TERM" Type="Int16" />
+          <Property Name="CUS_CREDIT_LIMIT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CUS_DISC_PERCEN" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CUS_TAX_TY" Type="Byte" />
+          <Property Name="CUS_TAX_VATIO" Type="Byte" />
+          <Property Name="CUS_REMARK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CUS_STATUS" Type="Boolean" />
+          <Property Name="CUS_CREATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CUSTOMER_TYPE">
+          <Key>
+            <PropertyRef Name="CUSTY_ID" />
+          </Key>
+          <Property Name="CUSTY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTY_CODE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CUSTY_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CUSTY_REMARK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CUSTY_STATUS" Type="Boolean" />
+          <Property Name="CUSTY_CREATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DOCTYPE">
+          <Key>
+            <PropertyRef Name="DT_ID" />
+          </Key>
+          <Property Name="DT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DT_CODE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DT_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DT_TYPE" Type="Byte" />
+          <Property Name="DT_PREFIX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DT_SEPARATE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DT_DATE_SELECT" Type="Boolean" />
+          <Property Name="DT_DATE_TYPE" Type="Byte" />
+          <Property Name="DT_DATE_DIGIT" Type="Int32" />
+          <Property Name="DT_DATE_SEPARATE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DT_RUNNING" Type="Byte" />
+          <Property Name="DT_STATUS" Type="Boolean" />
+          <Property Name="DT_PRINT_TY" Type="Byte" />
+        </EntityType>
+        <EntityType Name="PRODUCTS">
+          <Key>
+            <PropertyRef Name="PRO_ID" />
+          </Key>
+          <Property Name="PRO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PRO_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRO_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PRO_ALIAS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PRO_E_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PRO_UNIT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PRO_BUY" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PRO_PRICE" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PRO_CAT" Type="Int32" />
+          <Property Name="PRO_VAT_TY" Type="Byte" />
+          <Property Name="PRO_VAT_R" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PRO_MIN" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PRO_MAX" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PRO_IMAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PRO_REMARK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PRO_STATUS" Type="Boolean" />
+          <Property Name="PRO_CREATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PRODUCTS_TYPE">
+          <Key>
+            <PropertyRef Name="PROTY_ID" />
+          </Key>
+          <Property Name="PROTY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PROTY_CODE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROTY_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PROTY_REMARK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PROTY_CREATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PROVINCE">
+          <Key>
+            <PropertyRef Name="PROVINCE_ID" />
+          </Key>
+          <Property Name="PROVINCE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PROVINCE_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SALESMAN">
+          <Key>
+            <PropertyRef Name="SLMN_ID" />
+          </Key>
+          <Property Name="SLMN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SLMN_CODE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SLMN_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SLMN_POSITION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SLMN_TEL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SLMN_MAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SLMN_SL_TARGET" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SLMN_SL_TARGET_QUARTER" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SLMN_SL_TARGET_YEAR" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SLMN_REMARK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SLMN_STATUS" Type="Boolean" />
+          <Property Name="SLMN_CREATE" Type="DateTime" Precision="3" />
+          <Property Name="SLMN_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="SLMN_CAT" Type="Int32" />
+          <Property Name="SLMN_COMMISSION" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="SUPPLIER">
+          <Key>
+            <PropertyRef Name="SUP_ID" />
+          </Key>
+          <Property Name="SUP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SUP_CODE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SUP_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SUP_BRANCH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SUP_TAXID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SUP_ADDB1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SUP_ADDB2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SUP_PROVINCE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SUP_POST" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SUP_TEL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SUP_FAX" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SUP_MAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SUP_WEB" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SUP_CAT" Type="Int32" />
+          <Property Name="SUP_CONTACT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SUP_CREDIT_TERM" Type="Int16" />
+          <Property Name="SUP_CREDIT_LIMIT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SUP_DISC_PERCEN" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SUP_TAX_TY" Type="Byte" />
+          <Property Name="SUP_TAX_VATIO" Type="Byte" />
+          <Property Name="SUP_REMARK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SUP_STATUS" Type="Boolean" />
+          <Property Name="SUP_CREATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SUPPLIER_TYPE">
+          <Key>
+            <PropertyRef Name="SUPTY_ID" />
+          </Key>
+          <Property Name="SUPTY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SUPTY_CODE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SUPTY_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SUPTY_REMARK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SUPTY_STATUS" Type="Boolean" />
+          <Property Name="SUPTY_CREATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TRANDETAIL">
+          <Key>
+            <PropertyRef Name="TRD_ID" />
+          </Key>
+          <Property Name="TRD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TRD_TRH" Type="Int32" />
+          <Property Name="TRD_SEQ" Type="Int16" />
+          <Property Name="TRD_SKU" Type="Int32" />
+          <Property Name="TRD_SKU_CODE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TRD_SKU_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="TRD_UNIT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TRD_VAT_TY" Type="Byte" />
+          <Property Name="TRD_VAT_R" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRD_QTY" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRD_UPC" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRD_DISC" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRD_DISC_AMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRD_G_KEYIN" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRD_TDISC_AMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRD_G_SELL" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRD_G_VAT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRD_G_AMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRD_REMARK" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TRD_CREATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TRANMAIN">
+          <Key>
+            <PropertyRef Name="TRH_ID" />
+          </Key>
+          <Property Name="TRH_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TRH_DT" Type="Int32" />
+          <Property Name="TRH_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TRH_DATE" Type="DateTime" Precision="3" />
+          <Property Name="TRH_VAT_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TRH_VAT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="TRH_SHIP_DATE" Type="DateTime" Precision="3" />
+          <Property Name="TRH_BILL_DATE" Type="DateTime" Precision="3" />
+          <Property Name="TRH_CANCEL_DATE" Type="DateTime" Precision="3" />
+          <Property Name="TRH_CUS" Type="Int32" />
+          <Property Name="TRH_SLMN" Type="Int32" />
+          <Property Name="TRH_TERM" Type="Int16" />
+          <Property Name="TRH_DUE" Type="DateTime" Precision="3" />
+          <Property Name="TRH_REF_PO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TRH_REF_SO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TRH_REF_PERSON" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TRH_VATIO" Type="Byte" />
+          <Property Name="TRH_VAT" Type="Int32" />
+          <Property Name="TRH_VAT_TY" Type="Byte" />
+          <Property Name="TRH_VAT_R" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRH_N_QTY" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRH_N_ITEMS" Type="Int32" />
+          <Property Name="TRH_G_KEYIN" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRH_DISC" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRH_DISC_AMT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRH_G_SELL" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRH_G_SV" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRH_G_SNV" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRH_G_VAT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRH_G_NET" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRH_REMARK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TRH_DOC_STATUS" Type="Byte" />
+          <Property Name="TRH_STATUS" Type="Boolean" />
+          <Property Name="TRH_CREATE_BY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TRH_CREATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="INVOICE_CSHARPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADDRESS" EntityType="Self.ADDRESS" />
+          <EntitySet Name="CODE_RUNNING" EntityType="Self.CODE_RUNNING" />
+          <EntitySet Name="COMPANY" EntityType="Self.COMPANY" />
+          <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" />
+          <EntitySet Name="CUSTOMER_TYPE" EntityType="Self.CUSTOMER_TYPE" />
+          <EntitySet Name="DOCTYPE" EntityType="Self.DOCTYPE" />
+          <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCTS" />
+          <EntitySet Name="PRODUCTS_TYPE" EntityType="Self.PRODUCTS_TYPE" />
+          <EntitySet Name="PROVINCE" EntityType="Self.PROVINCE" />
+          <EntitySet Name="SALESMAN" EntityType="Self.SALESMAN" />
+          <EntitySet Name="SUPPLIER" EntityType="Self.SUPPLIER" />
+          <EntitySet Name="SUPPLIER_TYPE" EntityType="Self.SUPPLIER_TYPE" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TRANDETAIL" EntityType="Self.TRANDETAIL" />
+          <EntitySet Name="TRANMAIN" EntityType="Self.TRANMAIN" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="INVOICE_CSHARPModelStoreContainer" CdmEntityContainer="INVOICE_CSHARPEntities">
+          <EntitySetMapping Name="ADDRESS">
+            <EntityTypeMapping TypeName="INVOICE_CSHARPModel.ADDRESS">
+              <MappingFragment StoreEntitySet="ADDRESS">
+                <ScalarProperty Name="ADDR_ID" ColumnName="ADDR_ID" />
+                <ScalarProperty Name="ADDR_AR" ColumnName="ADDR_AR" />
+                <ScalarProperty Name="ADDR_NAME" ColumnName="ADDR_NAME" />
+                <ScalarProperty Name="ADDR_BRANCH" ColumnName="ADDR_BRANCH" />
+                <ScalarProperty Name="ADDR_TAXID" ColumnName="ADDR_TAXID" />
+                <ScalarProperty Name="ADDR_ADDB1" ColumnName="ADDR_ADDB1" />
+                <ScalarProperty Name="ADDR_ADDB2" ColumnName="ADDR_ADDB2" />
+                <ScalarProperty Name="ADDR_PROVINCE" ColumnName="ADDR_PROVINCE" />
+                <ScalarProperty Name="ADDR_POST" ColumnName="ADDR_POST" />
+                <ScalarProperty Name="ADDR_TEL" ColumnName="ADDR_TEL" />
+                <ScalarProperty Name="ADDR_FAX" ColumnName="ADDR_FAX" />
+                <ScalarProperty Name="ADDR_MAIL" ColumnName="ADDR_MAIL" />
+                <ScalarProperty Name="ADDR_WEB" ColumnName="ADDR_WEB" />
+                <ScalarProperty Name="ADDR_REMARK" ColumnName="ADDR_REMARK" />
+                <ScalarProperty Name="ADDR_STATUS" ColumnName="ADDR_STATUS" />
+                <ScalarProperty Name="ADDR_CREATE" ColumnName="ADDR_CREATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CODE_RUNNING">
+            <EntityTypeMapping TypeName="INVOICE_CSHARPModel.CODE_RUNNING">
+              <MappingFragment StoreEntitySet="CODE_RUNNING">
+                <ScalarProperty Name="CR_ID" ColumnName="CR_ID" />
+                <ScalarProperty Name="CR_CODE" ColumnName="CR_CODE" />
+                <ScalarProperty Name="CR_NAME" ColumnName="CR_NAME" />
+                <ScalarProperty Name="CR_TYPE" ColumnName="CR_TYPE" />
+                <ScalarProperty Name="CR_PREFIX" ColumnName="CR_PREFIX" />
+                <ScalarProperty Name="CR_SEPARATE" ColumnName="CR_SEPARATE" />
+                <ScalarProperty Name="CR_RUNNING" ColumnName="CR_RUNNING" />
+                <ScalarProperty Name="CR_STATUS" ColumnName="CR_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMPANY">
+            <EntityTypeMapping TypeName="INVOICE_CSHARPModel.COMPANY">
+              <MappingFragment StoreEntitySet="COMPANY">
+                <ScalarProperty Name="CMPN_ID" ColumnName="CMPN_ID" />
+                <ScalarProperty Name="CMPN_NAME" ColumnName="CMPN_NAME" />
+                <ScalarProperty Name="CMPN_ADDB1" ColumnName="CMPN_ADDB1" />
+                <ScalarProperty Name="CMPN_ADDB2" ColumnName="CMPN_ADDB2" />
+                <ScalarProperty Name="CMPN_E_NAME" ColumnName="CMPN_E_NAME" />
+                <ScalarProperty Name="CMPN_E_ADDB1" ColumnName="CMPN_E_ADDB1" />
+                <ScalarProperty Name="CMPN_E_ADDB2" ColumnName="CMPN_E_ADDB2" />
+                <ScalarProperty Name="CMPN_POST" ColumnName="CMPN_POST" />
+                <ScalarProperty Name="CMPN_TEL" ColumnName="CMPN_TEL" />
+                <ScalarProperty Name="CMPN_FAX" ColumnName="CMPN_FAX" />
+                <ScalarProperty Name="CMPN_TAXID" ColumnName="CMPN_TAXID" />
+                <ScalarProperty Name="CMPN_REGNO" ColumnName="CMPN_REGNO" />
+                <ScalarProperty Name="CMPN_WEB" ColumnName="CMPN_WEB" />
+                <ScalarProperty Name="CMPN_MAIL" ColumnName="CMPN_MAIL" />
+                <ScalarProperty Name="CMPN_VAT_R" ColumnName="CMPN_VAT_R" />
+                <ScalarProperty Name="CMPN_IMAGE" ColumnName="CMPN_IMAGE" />
+                <ScalarProperty Name="CMPN_IMAGE_PATH" ColumnName="CMPN_IMAGE_PATH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUSTOMER">
+            <EntityTypeMapping TypeName="INVOICE_CSHARPModel.CUSTOMER">
+              <MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="CUS_ID" ColumnName="CUS_ID" />
+                <ScalarProperty Name="CUS_CODE" ColumnName="CUS_CODE" />
+                <ScalarProperty Name="CUS_NAME" ColumnName="CUS_NAME" />
+                <ScalarProperty Name="CUS_BRANCH" ColumnName="CUS_BRANCH" />
+                <ScalarProperty Name="CUS_TAXID" ColumnName="CUS_TAXID" />
+                <ScalarProperty Name="CUS_ADDB1" ColumnName="CUS_ADDB1" />
+                <ScalarProperty Name="CUS_ADDB2" ColumnName="CUS_ADDB2" />
+                <ScalarProperty Name="CUS_PROVINCE" ColumnName="CUS_PROVINCE" />
+                <ScalarProperty Name="CUS_POST" ColumnName="CUS_POST" />
+                <ScalarProperty Name="CUS_TEL" ColumnName="CUS_TEL" />
+                <ScalarProperty Name="CUS_FAX" ColumnName="CUS_FAX" />
+                <ScalarProperty Name="CUS_MAIL" ColumnName="CUS_MAIL" />
+                <ScalarProperty Name="CUS_WEB" ColumnName="CUS_WEB" />
+                <ScalarProperty Name="CUS_CAT" ColumnName="CUS_CAT" />
+                <ScalarProperty Name="CUS_SLMN" ColumnName="CUS_SLMN" />
+                <ScalarProperty Name="CUS_CONTACT" ColumnName="CUS_CONTACT" />
+                <ScalarProperty Name="CUS_CREDIT_TERM" ColumnName="CUS_CREDIT_TERM" />
+                <ScalarProperty Name="CUS_CREDIT_LIMIT" ColumnName="CUS_CREDIT_LIMIT" />
+                <ScalarProperty Name="CUS_DISC_PERCEN" ColumnName="CUS_DISC_PERCEN" />
+                <ScalarProperty Name="CUS_TAX_TY" ColumnName="CUS_TAX_TY" />
+                <ScalarProperty Name="CUS_TAX_VATIO" ColumnName="CUS_TAX_VATIO" />
+                <ScalarProperty Name="CUS_REMARK" ColumnName="CUS_REMARK" />
+                <ScalarProperty Name="CUS_STATUS" ColumnName="CUS_STATUS" />
+                <ScalarProperty Name="CUS_CREATE" ColumnName="CUS_CREATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUSTOMER_TYPE">
+            <EntityTypeMapping TypeName="INVOICE_CSHARPModel.CUSTOMER_TYPE">
+              <MappingFragment StoreEntitySet="CUSTOMER_TYPE">
+                <ScalarProperty Name="CUSTY_ID" ColumnName="CUSTY_ID" />
+                <ScalarProperty Name="CUSTY_CODE" ColumnName="CUSTY_CODE" />
+                <ScalarProperty Name="CUSTY_NAME" ColumnName="CUSTY_NAME" />
+                <ScalarProperty Name="CUSTY_REMARK" ColumnName="CUSTY_REMARK" />
+                <ScalarProperty Name="CUSTY_STATUS" ColumnName="CUSTY_STATUS" />
+                <ScalarProperty Name="CUSTY_CREATE" ColumnName="CUSTY_CREATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOCTYPE">
+            <EntityTypeMapping TypeName="INVOICE_CSHARPModel.DOCTYPE">
+              <MappingFragment StoreEntitySet="DOCTYPE">
+                <ScalarProperty Name="DT_ID" ColumnName="DT_ID" />
+                <ScalarProperty Name="DT_CODE" ColumnName="DT_CODE" />
+                <ScalarProperty Name="DT_NAME" ColumnName="DT_NAME" />
+                <ScalarProperty Name="DT_TYPE" ColumnName="DT_TYPE" />
+                <ScalarProperty Name="DT_PREFIX" ColumnName="DT_PREFIX" />
+                <ScalarProperty Name="DT_SEPARATE" ColumnName="DT_SEPARATE" />
+                <ScalarProperty Name="DT_DATE_SELECT" ColumnName="DT_DATE_SELECT" />
+                <ScalarProperty Name="DT_DATE_TYPE" ColumnName="DT_DATE_TYPE" />
+                <ScalarProperty Name="DT_DATE_DIGIT" ColumnName="DT_DATE_DIGIT" />
+                <ScalarProperty Name="DT_DATE_SEPARATE" ColumnName="DT_DATE_SEPARATE" />
+                <ScalarProperty Name="DT_RUNNING" ColumnName="DT_RUNNING" />
+                <ScalarProperty Name="DT_STATUS" ColumnName="DT_STATUS" />
+                <ScalarProperty Name="DT_PRINT_TY" ColumnName="DT_PRINT_TY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTS">
+            <EntityTypeMapping TypeName="INVOICE_CSHARPModel.PRODUCTS">
+              <MappingFragment StoreEntitySet="PRODUCTS">
+                <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
+                <ScalarProperty Name="PRO_CODE" ColumnName="PRO_CODE" />
+                <ScalarProperty Name="PRO_NAME" ColumnName="PRO_NAME" />
+                <ScalarProperty Name="PRO_ALIAS" ColumnName="PRO_ALIAS" />
+                <ScalarProperty Name="PRO_E_NAME" ColumnName="PRO_E_NAME" />
+                <ScalarProperty Name="PRO_UNIT" ColumnName="PRO_UNIT" />
+                <ScalarProperty Name="PRO_BUY" ColumnName="PRO_BUY" />
+                <ScalarProperty Name="PRO_PRICE" ColumnName="PRO_PRICE" />
+                <ScalarProperty Name="PRO_CAT" ColumnName="PRO_CAT" />
+                <ScalarProperty Name="PRO_VAT_TY" ColumnName="PRO_VAT_TY" />
+                <ScalarProperty Name="PRO_VAT_R" ColumnName="PRO_VAT_R" />
+                <ScalarProperty Name="PRO_MIN" ColumnName="PRO_MIN" />
+                <ScalarProperty Name="PRO_MAX" ColumnName="PRO_MAX" />
+                <ScalarProperty Name="PRO_IMAGE" ColumnName="PRO_IMAGE" />
+                <ScalarProperty Name="PRO_REMARK" ColumnName="PRO_REMARK" />
+                <ScalarProperty Name="PRO_STATUS" ColumnName="PRO_STATUS" />
+                <ScalarProperty Name="PRO_CREATE" ColumnName="PRO_CREATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTS_TYPE">
+            <EntityTypeMapping TypeName="INVOICE_CSHARPModel.PRODUCTS_TYPE">
+              <MappingFragment StoreEntitySet="PRODUCTS_TYPE">
+                <ScalarProperty Name="PROTY_ID" ColumnName="PROTY_ID" />
+                <ScalarProperty Name="PROTY_CODE" ColumnName="PROTY_CODE" />
+                <ScalarProperty Name="PROTY_NAME" ColumnName="PROTY_NAME" />
+                <ScalarProperty Name="PROTY_REMARK" ColumnName="PROTY_REMARK" />
+                <ScalarProperty Name="PROTY_CREATE" ColumnName="PROTY_CREATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVINCE">
+            <EntityTypeMapping TypeName="INVOICE_CSHARPModel.PROVINCE">
+              <MappingFragment StoreEntitySet="PROVINCE">
+                <ScalarProperty Name="PROVINCE_ID" ColumnName="PROVINCE_ID" />
+                <ScalarProperty Name="PROVINCE_NAME" ColumnName="PROVINCE_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SALESMAN">
+            <EntityTypeMapping TypeName="INVOICE_CSHARPModel.SALESMAN">
+              <MappingFragment StoreEntitySet="SALESMAN">
+                <ScalarProperty Name="SLMN_ID" ColumnName="SLMN_ID" />
+                <ScalarProperty Name="SLMN_CODE" ColumnName="SLMN_CODE" />
+                <ScalarProperty Name="SLMN_NAME" ColumnName="SLMN_NAME" />
+                <ScalarProperty Name="SLMN_POSITION" ColumnName="SLMN_POSITION" />
+                <ScalarProperty Name="SLMN_TEL" ColumnName="SLMN_TEL" />
+                <ScalarProperty Name="SLMN_MAIL" ColumnName="SLMN_MAIL" />
+                <ScalarProperty Name="SLMN_SL_TARGET" ColumnName="SLMN_SL_TARGET" />
+                <ScalarProperty Name="SLMN_SL_TARGET_QUARTER" ColumnName="SLMN_SL_TARGET_QUARTER" />
+                <ScalarProperty Name="SLMN_SL_TARGET_YEAR" ColumnName="SLMN_SL_TARGET_YEAR" />
+                <ScalarProperty Name="SLMN_REMARK" ColumnName="SLMN_REMARK" />
+                <ScalarProperty Name="SLMN_STATUS" ColumnName="SLMN_STATUS" />
+                <ScalarProperty Name="SLMN_CREATE" ColumnName="SLMN_CREATE" />
+                <ScalarProperty Name="SLMN_IMAGE" ColumnName="SLMN_IMAGE" />
+                <ScalarProperty Name="SLMN_CAT" ColumnName="SLMN_CAT" />
+                <ScalarProperty Name="SLMN_COMMISSION" ColumnName="SLMN_COMMISSION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUPPLIER">
+            <EntityTypeMapping TypeName="INVOICE_CSHARPModel.SUPPLIER">
+              <MappingFragment StoreEntitySet="SUPPLIER">
+                <ScalarProperty Name="SUP_ID" ColumnName="SUP_ID" />
+                <ScalarProperty Name="SUP_CODE" ColumnName="SUP_CODE" />
+                <ScalarProperty Name="SUP_NAME" ColumnName="SUP_NAME" />
+                <ScalarProperty Name="SUP_BRANCH" ColumnName="SUP_BRANCH" />
+                <ScalarProperty Name="SUP_TAXID" ColumnName="SUP_TAXID" />
+                <ScalarProperty Name="SUP_ADDB1" ColumnName="SUP_ADDB1" />
+                <ScalarProperty Name="SUP_ADDB2" ColumnName="SUP_ADDB2" />
+                <ScalarProperty Name="SUP_PROVINCE" ColumnName="SUP_PROVINCE" />
+                <ScalarProperty Name="SUP_POST" ColumnName="SUP_POST" />
+                <ScalarProperty Name="SUP_TEL" ColumnName="SUP_TEL" />
+                <ScalarProperty Name="SUP_FAX" ColumnName="SUP_FAX" />
+                <ScalarProperty Name="SUP_MAIL" ColumnName="SUP_MAIL" />
+                <ScalarProperty Name="SUP_WEB" ColumnName="SUP_WEB" />
+                <ScalarProperty Name="SUP_CAT" ColumnName="SUP_CAT" />
+                <ScalarProperty Name="SUP_CONTACT" ColumnName="SUP_CONTACT" />
+                <ScalarProperty Name="SUP_CREDIT_TERM" ColumnName="SUP_CREDIT_TERM" />
+                <ScalarProperty Name="SUP_CREDIT_LIMIT" ColumnName="SUP_CREDIT_LIMIT" />
+                <ScalarProperty Name="SUP_DISC_PERCEN" ColumnName="SUP_DISC_PERCEN" />
+                <ScalarProperty Name="SUP_TAX_TY" ColumnName="SUP_TAX_TY" />
+                <ScalarProperty Name="SUP_TAX_VATIO" ColumnName="SUP_TAX_VATIO" />
+                <ScalarProperty Name="SUP_REMARK" ColumnName="SUP_REMARK" />
+                <ScalarProperty Name="SUP_STATUS" ColumnName="SUP_STATUS" />
+                <ScalarProperty Name="SUP_CREATE" ColumnName="SUP_CREATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUPPLIER_TYPE">
+            <EntityTypeMapping TypeName="INVOICE_CSHARPModel.SUPPLIER_TYPE">
+              <MappingFragment StoreEntitySet="SUPPLIER_TYPE">
+                <ScalarProperty Name="SUPTY_ID" ColumnName="SUPTY_ID" />
+                <ScalarProperty Name="SUPTY_CODE" ColumnName="SUPTY_CODE" />
+                <ScalarProperty Name="SUPTY_NAME" ColumnName="SUPTY_NAME" />
+                <ScalarProperty Name="SUPTY_REMARK" ColumnName="SUPTY_REMARK" />
+                <ScalarProperty Name="SUPTY_STATUS" ColumnName="SUPTY_STATUS" />
+                <ScalarProperty Name="SUPTY_CREATE" ColumnName="SUPTY_CREATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="INVOICE_CSHARPModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANDETAIL">
+            <EntityTypeMapping TypeName="INVOICE_CSHARPModel.TRANDETAIL">
+              <MappingFragment StoreEntitySet="TRANDETAIL">
+                <ScalarProperty Name="TRD_ID" ColumnName="TRD_ID" />
+                <ScalarProperty Name="TRD_TRH" ColumnName="TRD_TRH" />
+                <ScalarProperty Name="TRD_SEQ" ColumnName="TRD_SEQ" />
+                <ScalarProperty Name="TRD_SKU" ColumnName="TRD_SKU" />
+                <ScalarProperty Name="TRD_SKU_CODE" ColumnName="TRD_SKU_CODE" />
+                <ScalarProperty Name="TRD_SKU_NAME" ColumnName="TRD_SKU_NAME" />
+                <ScalarProperty Name="TRD_UNIT" ColumnName="TRD_UNIT" />
+                <ScalarProperty Name="TRD_VAT_TY" ColumnName="TRD_VAT_TY" />
+                <ScalarProperty Name="TRD_VAT_R" ColumnName="TRD_VAT_R" />
+                <ScalarProperty Name="TRD_QTY" ColumnName="TRD_QTY" />
+                <ScalarProperty Name="TRD_UPC" ColumnName="TRD_UPC" />
+                <ScalarProperty Name="TRD_DISC" ColumnName="TRD_DISC" />
+                <ScalarProperty Name="TRD_DISC_AMT" ColumnName="TRD_DISC_AMT" />
+                <ScalarProperty Name="TRD_G_KEYIN" ColumnName="TRD_G_KEYIN" />
+                <ScalarProperty Name="TRD_TDISC_AMT" ColumnName="TRD_TDISC_AMT" />
+                <ScalarProperty Name="TRD_G_SELL" ColumnName="TRD_G_SELL" />
+                <ScalarProperty Name="TRD_G_VAT" ColumnName="TRD_G_VAT" />
+                <ScalarProperty Name="TRD_G_AMT" ColumnName="TRD_G_AMT" />
+                <ScalarProperty Name="TRD_REMARK" ColumnName="TRD_REMARK" />
+                <ScalarProperty Name="TRD_CREATE" ColumnName="TRD_CREATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANMAIN">
+            <EntityTypeMapping TypeName="INVOICE_CSHARPModel.TRANMAIN">
+              <MappingFragment StoreEntitySet="TRANMAIN">
+                <ScalarProperty Name="TRH_ID" ColumnName="TRH_ID" />
+                <ScalarProperty Name="TRH_DT" ColumnName="TRH_DT" />
+                <ScalarProperty Name="TRH_NO" ColumnName="TRH_NO" />
+                <ScalarProperty Name="TRH_DATE" ColumnName="TRH_DATE" />
+                <ScalarProperty Name="TRH_VAT_NO" ColumnName="TRH_VAT_NO" />
+                <ScalarProperty Name="TRH_VAT_DATE" ColumnName="TRH_VAT_DATE" />
+                <ScalarProperty Name="TRH_SHIP_DATE" ColumnName="TRH_SHIP_DATE" />
+                <ScalarProperty Name="TRH_BILL_DATE" ColumnName="TRH_BILL_DATE" />
+                <ScalarProperty Name="TRH_CANCEL_DATE" ColumnName="TRH_CANCEL_DATE" />
+                <ScalarProperty Name="TRH_CUS" ColumnName="TRH_CUS" />
+                <ScalarProperty Name="TRH_SLMN" ColumnName="TRH_SLMN" />
+                <ScalarProperty Name="TRH_TERM" ColumnName="TRH_TERM" />
+                <ScalarProperty Name="TRH_DUE" ColumnName="TRH_DUE" />
+                <ScalarProperty Name="TRH_REF_PO" ColumnName="TRH_REF_PO" />
+                <ScalarProperty Name="TRH_REF_SO" ColumnName="TRH_REF_SO" />
+                <ScalarProperty Name="TRH_REF_PERSON" ColumnName="TRH_REF_PERSON" />
+                <ScalarProperty Name="TRH_VATIO" ColumnName="TRH_VATIO" />
+                <ScalarProperty Name="TRH_VAT" ColumnName="TRH_VAT" />
+                <ScalarProperty Name="TRH_VAT_TY" ColumnName="TRH_VAT_TY" />
+                <ScalarProperty Name="TRH_VAT_R" ColumnName="TRH_VAT_R" />
+                <ScalarProperty Name="TRH_N_QTY" ColumnName="TRH_N_QTY" />
+                <ScalarProperty Name="TRH_N_ITEMS" ColumnName="TRH_N_ITEMS" />
+                <ScalarProperty Name="TRH_G_KEYIN" ColumnName="TRH_G_KEYIN" />
+                <ScalarProperty Name="TRH_DISC" ColumnName="TRH_DISC" />
+                <ScalarProperty Name="TRH_DISC_AMT" ColumnName="TRH_DISC_AMT" />
+                <ScalarProperty Name="TRH_G_SELL" ColumnName="TRH_G_SELL" />
+                <ScalarProperty Name="TRH_G_SV" ColumnName="TRH_G_SV" />
+                <ScalarProperty Name="TRH_G_SNV" ColumnName="TRH_G_SNV" />
+                <ScalarProperty Name="TRH_G_VAT" ColumnName="TRH_G_VAT" />
+                <ScalarProperty Name="TRH_G_NET" ColumnName="TRH_G_NET" />
+                <ScalarProperty Name="TRH_REMARK" ColumnName="TRH_REMARK" />
+                <ScalarProperty Name="TRH_DOC_STATUS" ColumnName="TRH_DOC_STATUS" />
+                <ScalarProperty Name="TRH_STATUS" ColumnName="TRH_STATUS" />
+                <ScalarProperty Name="TRH_CREATE_BY" ColumnName="TRH_CREATE_BY" />
+                <ScalarProperty Name="TRH_CREATE" ColumnName="TRH_CREATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
